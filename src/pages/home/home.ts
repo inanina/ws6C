@@ -27,7 +27,7 @@ export class HomePage {
 
   addItem(){
 		let prompt = this.alertCtrl.create({
-			title: 'Item Name',
+			title: 'New item',
 			inputs: [
 				{
 					name: 'name',
@@ -49,6 +49,9 @@ export class HomePage {
 					text: 'Save',
 					handler: data => {
 						if(data.name != ''){
+							if(data.description == '') {
+								data.description == '';
+							}
 							this.items.push({
 							name: data.name,
               description: data.description
@@ -64,15 +67,20 @@ export class HomePage {
   removeItem(itemId: string){
 		this.items.remove(itemId);
 	}
-	updateItem(itemId, itemTitle){
+	updateItem(itemId, itemTitle, itemDescription){
 		let prompt = this.alertCtrl.create({
 			title: itemTitle,
-			message: "Edit the name for this item",
+			message: "Edit this item",
 			inputs: [
 				{
 					name: 'name',
 					placeholder: 'Name',
 					value: itemTitle
+				},
+				{
+					name: 'description',
+					placeholder: 'Description',
+					value: itemDescription
 				},
 			],
 			buttons: [
@@ -86,7 +94,8 @@ export class HomePage {
 					text: 'Save',
 					handler: data => {
 						this.items.update(itemId, {
-							name: data.name
+							name: data.name,
+							description: data.description
 						});
 					}
 				}
