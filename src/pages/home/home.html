@@ -12,14 +12,14 @@
    
   	<ion-list>
 		<ion-list-header>
-			Things I need
+			Grill Ereignisse
 		</ion-list-header>
 		<ion-item-sliding *ngFor="let item of items | async">
-			<ion-item (tap)="viewItem(item)"> <!--implement this yourself viewItem(item.$key, item.name)-->
+			<ion-item (tap)="viewItem(item)"> 
 				{{item.name}}
 			</ion-item>
 			<ion-item-options side="right">
-				<button ion-button color="primary" (click)="updateItem(item.$key, item.name, item.description)">
+				<button ion-button color="primary" (click)="updateItem(item.$key, item.name, item.description, item.date, item.startTime, item.endTime)">
 					<ion-icon name="md-create"></ion-icon>
 					Edit
 				</button>

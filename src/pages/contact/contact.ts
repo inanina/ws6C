@@ -9,35 +9,41 @@ import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable 
 export class ContactPage {
 
   item;
-  items: FirebaseListObservable<any>;
+  supplyItems: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, private navParams: NavParams, public alertCtrl: AlertController, public db: AngularFireDatabase) {
       this.item = navParams.get("item");
-      this.items = this.db.list('/items');
+	  console.log(this.item);
+      //this.supplyItems = this.db.list('/items/supplyItems');
+	  this.supplyItems = this.db.list('/items/' + this.item.$key + '/supplyItems')
   }
 
   addItem(itemId){
 		let prompt = this.alertCtrl.create({
-			title: 'Item Name',
+			title: 'supplyItem Name',
 			inputs: [
 				{
-					name: 'item',
+					name: 'supplyItem',
           			placeholder: 'Name'
+				},
+				{
+					name: 'amount',
+					placeholder: 'Anzahl'
 				}
 				],
 				buttons: [
 				{
 					text: 'Cancel',
 					handler: data => {
-					console.log('Cancel clicked');
 					}
 				},
 				{
 					text: 'Save',
 					handler: data => {
-						this.items.update(itemId, {
-							item: data.item
-						});
+
+					console.log(data.supplyItem + data.amount);
+						this.supplyItems.push({supplyItem: data.supplyItem,
+						amount: data.amount});
 					}
 				}
 			]

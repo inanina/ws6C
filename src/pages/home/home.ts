@@ -4,6 +4,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { ContactPage } from '../contact/contact';
+import { DatePicker } from '@ionic-native/date-picker';
 //import { environment } from '../environments/environment';
 
 @Component({
@@ -27,7 +28,7 @@ export class HomePage {
 
   addItem(){
 		let prompt = this.alertCtrl.create({
-			title: 'New item',
+			title: 'Neues Grillevent',
 			inputs: [
 				{
 					name: 'name',
@@ -35,8 +36,20 @@ export class HomePage {
 				},
         {
           name: 'description',
-          placeholder: 'Description'
-        }
+          placeholder: 'Beschreibung'
+        },
+				{
+					name: 'date',
+					placeholder: 'Datum'
+				},
+				{
+					name: 'startTime',
+					placeholder: 'Startzeit'
+				},
+				{
+					name: 'endTime',
+					placeholder: 'Endzeit'
+				}
 				],
 				buttons: [
 				{
@@ -54,7 +67,10 @@ export class HomePage {
 							}
 							this.items.push({
 							name: data.name,
-              description: data.description
+              description: data.description,
+							date: data.date,
+							startTime: data.startTime,
+							endTime: data.endTime
 							});
 						}
 					}
@@ -67,10 +83,10 @@ export class HomePage {
   removeItem(itemId: string){
 		this.items.remove(itemId);
 	}
-	updateItem(itemId, itemTitle, itemDescription){
+	updateItem(itemId, itemTitle, itemDescription, itemDate, itemStartDate, itemEndDate){
 		let prompt = this.alertCtrl.create({
 			title: itemTitle,
-			message: "Edit this item",
+			message: "Ereignis anpassen",
 			inputs: [
 				{
 					name: 'name',
@@ -79,9 +95,24 @@ export class HomePage {
 				},
 				{
 					name: 'description',
-					placeholder: 'Description',
+					placeholder: 'Beschreibung',
 					value: itemDescription
 				},
+				{
+					name: 'date',
+					placeholder: 'Datum',
+					value: itemDate
+				},
+				{
+					name: 'startTime',
+					placeholder: 'Startzeit',
+					value: itemStartDate
+				},
+				{
+					name: 'endTime',
+					placeholder: 'Endzeit',
+					value: itemEndDate
+				}
 			],
 			buttons: [
 				{
@@ -95,7 +126,10 @@ export class HomePage {
 					handler: data => {
 						this.items.update(itemId, {
 							name: data.name,
-							description: data.description
+              description: data.description,
+							date: data.date,
+							startTime: data.startTime,
+							endTime: data.endTime
 						});
 					}
 				}
