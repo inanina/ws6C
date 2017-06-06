@@ -16,13 +16,13 @@ export class ContactPage {
       this.items = this.db.list('/items');
   }
 
-  addItem(){
+  addItem(itemId){
 		let prompt = this.alertCtrl.create({
 			title: 'Item Name',
 			inputs: [
 				{
-					name: 'name',
-          placeholder: 'Name'
+					name: 'item',
+          			placeholder: 'Name'
 				}
 				],
 				buttons: [
@@ -35,12 +35,9 @@ export class ContactPage {
 				{
 					text: 'Save',
 					handler: data => {
-						if(data.name != ''){
-              console.log(data.name);
-							this.items.push({
-							name: data.name
-							});
-						}
+						this.items.update(itemId, {
+							item: data.item
+						});
 					}
 				}
 			]

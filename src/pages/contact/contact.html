@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 <ion-fab right bottom>
-    <button ion-fab class="fab fab-md fab-md-accent" style="bottom: 60px" (click)="addItem()"><ion-icon name="md-add"></ion-icon></button>
+    <button ion-fab class="fab fab-md fab-md-accent" style="bottom: 60px" (click)="addItem(item.$key)"><ion-icon name="md-add"></ion-icon></button>
   </ion-fab>
 <ion-content padding>
   {{ item.description }}
