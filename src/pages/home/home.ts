@@ -28,12 +28,15 @@ export class HomePage {
   addItem(){
 		let prompt = this.alertCtrl.create({
 			title: 'Item Name',
-			message: "What do you need to spend money on?",
 			inputs: [
 				{
 					name: 'name',
-          description: 'description',
+          placeholder: 'Name'
 				},
+        {
+          name: 'description',
+          placeholder: 'Description'
+        }
 				],
 				buttons: [
 				{
@@ -47,7 +50,8 @@ export class HomePage {
 					handler: data => {
 						if(data.name != ''){
 							this.items.push({
-							name: data.name
+							name: data.name,
+              description: data.description
 							});
 						}
 					}
