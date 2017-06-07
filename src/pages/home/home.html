@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Grillo</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -12,20 +12,20 @@
    
   	<ion-list>
 		<ion-list-header>
-			Grill Ereignisse
+			Bevorstehende Events
 		</ion-list-header>
 		<ion-item-sliding *ngFor="let item of items | async">
 			<ion-item (tap)="viewItem(item)"> 
-				{{item.name}}
+				{{item.name}} {{item.date}}
 			</ion-item>
 			<ion-item-options side="right">
 				<button ion-button color="primary" (click)="updateItem(item.$key, item.name, item.description, item.date, item.startTime, item.endTime)">
 					<ion-icon name="md-create"></ion-icon>
-					Edit
+					Anpassen
 				</button>
 				<button ion-button color="secondary" (click)="removeItem(item.$key)">
 					<ion-icon name="md-trash"></ion-icon>
-					Delete
+					Löschen
 				</button>
 			</ion-item-options>
 		</ion-item-sliding>

@@ -20,7 +20,7 @@ export class ContactPage {
 
   addItem(itemId){
 		let prompt = this.alertCtrl.create({
-			title: 'supplyItem Name',
+			title: 'Anpassen',
 			inputs: [
 				{
 					name: 'supplyItem',
@@ -33,22 +33,70 @@ export class ContactPage {
 				],
 				buttons: [
 				{
-					text: 'Cancel',
+					text: 'Abbrechen',
 					handler: data => {
 					}
 				},
 				{
-					text: 'Save',
+					text: 'Speichern',
 					handler: data => {
-
-					console.log(data.supplyItem + data.amount);
-						this.supplyItems.push({supplyItem: data.supplyItem,
-						amount: data.amount});
+						console.log(data.supplyItem + data.amount);
+						this.supplyItems.push({
+							supplyItem: data.supplyItem,
+							supplyAmount: data.amount,
+							supplyState: false
+						});
 					}
 				}
 			]
 		});
 		prompt.present();
+	}
+
+	updateItem(supplyId, supplyItem, supplyAmount) {
+		let prompt = this.alertCtrl.create({
+			title: supplyItem,
+			message: 'Anpassen',
+			inputs: [
+				{
+					name: 'name',
+					placeholder: supplyItem,
+					value: supplyItem
+				},
+				{
+					name: 'amount',
+					placeholder: supplyAmount,
+					value: supplyAmount
+				}
+			],
+			buttons: [
+				{
+					text: 'Abbrechen',
+					handler: data => {
+						console.log('Cancel clicked');
+					}
+				},
+				{
+					text: 'Speichern',
+					handler: data => {
+						console.log(supplyId);
+						this.supplyItems.update(supplyId, {
+							supplyItem: data.supplyItem,
+							amount: data.supplyAmount
+						});
+					}
+				}
+			]
+		});
+		prompt.present();
+	}
+
+	updateState(supplyId, supplyState) {
+		//implement
+	}
+
+	removeItem(itemId: string){
+		this.supplyItems.remove(itemId);
 	}
 
 }

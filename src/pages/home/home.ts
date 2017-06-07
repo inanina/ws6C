@@ -28,7 +28,7 @@ export class HomePage {
 
   addItem(){
 		let prompt = this.alertCtrl.create({
-			title: 'Neues Grillevent',
+			title: 'Neues Event',
 			inputs: [
 				{
 					name: 'name',
@@ -44,22 +44,22 @@ export class HomePage {
 				},
 				{
 					name: 'startTime',
-					placeholder: 'Startzeit'
+					placeholder: 'Start Zeit'
 				},
 				{
 					name: 'endTime',
-					placeholder: 'Endzeit'
+					placeholder: 'Ende'
 				}
 				],
 				buttons: [
 				{
-					text: 'Cancel',
+					text: 'Abbrechen',
 					handler: data => {
 					console.log('Cancel clicked');
 					}
 				},
 				{
-					text: 'Save',
+					text: 'Speichern',
 					handler: data => {
 						if(data.name != ''){
 							if(data.description == '') {
@@ -86,7 +86,7 @@ export class HomePage {
 	updateItem(itemId, itemTitle, itemDescription, itemDate, itemStartDate, itemEndDate){
 		let prompt = this.alertCtrl.create({
 			title: itemTitle,
-			message: "Ereignis anpassen",
+			message: 'Event anpassen',
 			inputs: [
 				{
 					name: 'name',
@@ -105,24 +105,24 @@ export class HomePage {
 				},
 				{
 					name: 'startTime',
-					placeholder: 'Startzeit',
+					placeholder: 'Start Zeit',
 					value: itemStartDate
 				},
 				{
 					name: 'endTime',
-					placeholder: 'Endzeit',
+					placeholder: 'Ende',
 					value: itemEndDate
 				}
 			],
 			buttons: [
 				{
-					text: 'Cancel',
+					text: 'Abbrechen',
 					handler: data => {
 						console.log('Cancel clicked');
 					}
 				},
 				{
-					text: 'Save',
+					text: 'Speichern',
 					handler: data => {
 						this.items.update(itemId, {
 							name: data.name,

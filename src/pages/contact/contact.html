@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      {{ item.name }}
+      {{ item.name }} {{ item.date }}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,24 +10,22 @@
   </ion-fab>
 
 <ion-content padding>
-  {{item.name}}
-  {{item.description}}
-  {{item.date}}
-  {{item.startDate}}
-  {{item.endDate}}
+  <b>{{item.description}}</b><br>
+  {{item.date}} {{item.startTime}} - {{item.endTime}}<br>
 <ion-list>
-<ion-item-sliding *ngFor="let supplyItem of supplyItems | async">
+		<ion-item-sliding *ngFor="let supplyItem of supplyItems | async">
 			<ion-item> 
-				{{supplyItem.supplyItem}} {{supplyItem.amount}}
+				<ion-label>{{supplyItem.supplyAmount}} {{supplyItem.supplyItem}}</ion-label>
+				<ion-checkbox [(ngModel)]="supplyItem.supplyState" (ionChange)="updateState(supplyItem.$key, supplyItem.supplyState)"></ion-checkbox>
 			</ion-item>
 			<ion-item-options side="right">
-				<button ion-button color="primary" (click)="updateItem(item.$key, item.name, item.description)">
+				<button ion-button color="primary" (click)="updateItem(supplyItem.$key, supplyItem.supplyItem, supplyItem.supplyAmount)">
 					<ion-icon name="md-create"></ion-icon>
-					Edit
+					Anpassen
 				</button>
-				<button ion-button color="secondary" (click)="removeItem(item.$key)">
+				<button ion-button color="secondary" (click)="removeItem(supplyItem.$key)">
 					<ion-icon name="md-trash"></ion-icon>
-					Delete
+					Löschen
 				</button>
 			</ion-item-options>
 		</ion-item-sliding>
