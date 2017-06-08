@@ -13,7 +13,7 @@ export class ContactPage {
 
   constructor(public navCtrl: NavController, private navParams: NavParams, public alertCtrl: AlertController, public db: AngularFireDatabase) {
       this.item = navParams.get("item");
-	  console.log(this.item);
+	  //console.log(this.item);
       //this.supplyItems = this.db.list('/items/supplyItems');
 	  this.supplyItems = this.db.list('/items/' + this.item.$key + '/supplyItems')
   }
@@ -45,6 +45,7 @@ export class ContactPage {
 							supplyItem: data.supplyItem,
 							supplyAmount: data.amount,
 							supplyState: false
+							
 						});
 					}
 				}
@@ -79,11 +80,11 @@ export class ContactPage {
 				{
 					text: 'Speichern',
 					handler: data => {
-						console.log(supplyId);
 						this.supplyItems.update(supplyId, {
-							supplyItem: data.supplyItem,
-							amount: data.supplyAmount
+							supplyItem: data.name,
+							supplyAmount: data.amount
 						});
+						
 					}
 				}
 			]
@@ -92,7 +93,7 @@ export class ContactPage {
 	}
 
 	updateState(supplyId, supplyState) {
-		//implement
+			this.supplyItems.update(supplyId, {supplyState: supplyState} );
 	}
 
 	removeItem(itemId: string){
