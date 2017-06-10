@@ -15,13 +15,14 @@
 <ion-list>
 		<ion-item-sliding *ngFor="let supplyItem of supplyItems | async">
 			<ion-item> 
-				<ion-label>{{supplyItem.supplyAmount}} {{supplyItem.supplyItem}}</ion-label>
-				<ion-checkbox [(ngModel)]="supplyItem.supplyState" (ionChange)="updateState(supplyItem.$key, supplyItem.supplyState)"></ion-checkbox>
+				<ion-label>{{supplyItem.supplyAmount}} {{supplyItem.supplyItem}} - {{supplyItem.respPerson}}</ion-label>
+				<ion-checkbox [(ngModel)]="supplyItem.supplyState" (ionChange)="updateState(supplyItem.$key, supplyItem.supplyState)"></ion-checkbox>		
+		
 			</ion-item>
 			<ion-item-options side="right">
-				<button ion-button color="primary" (click)="updateItem(supplyItem.$key, supplyItem.supplyItem, supplyItem.supplyAmount)">
+				<button ion-button color="primary" (click)="updateItem(supplyItem.$key, supplyItem.supplyItem, supplyItem.supplyAmount, supplyItem.respPerson)">
 					<ion-icon name="md-create"></ion-icon>
-					Anpassen
+					Eintragen
 				</button>
 				<button ion-button color="secondary" (click)="removeItem(supplyItem.$key)">
 					<ion-icon name="md-trash"></ion-icon>

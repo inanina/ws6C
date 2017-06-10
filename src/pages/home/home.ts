@@ -91,17 +91,21 @@ export class HomePage {
 				{
 					name: 'name',
 					placeholder: 'Name',
-					value: itemTitle
+					value: itemTitle,
+					type: 'number'
 				},
 				{
 					name: 'description',
 					placeholder: 'Beschreibung',
-					value: itemDescription
+					value: itemDescription,
+					type: 'text'
 				},
 				{
 					name: 'date',
 					placeholder: 'Datum',
-					value: itemDate
+					value: itemDate,
+					type: 'date'
+
 				},
 				{
 					name: 'startTime',

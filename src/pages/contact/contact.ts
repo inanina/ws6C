@@ -20,15 +20,17 @@ export class ContactPage {
 
   addItem(itemId){
 		let prompt = this.alertCtrl.create({
-			title: 'Anpassen',
+			title: 'Hinzufügen',
 			inputs: [
 				{
 					name: 'supplyItem',
-          			placeholder: 'Name'
+          			placeholder: 'Name',
+					  type: 'text'
 				},
 				{
 					name: 'amount',
-					placeholder: 'Anzahl'
+					placeholder: 'Anzahl',
+					type: 'number'
 				}
 				],
 				buttons: [
@@ -40,12 +42,11 @@ export class ContactPage {
 				{
 					text: 'Speichern',
 					handler: data => {
-						console.log(data.supplyItem + data.amount);
 						this.supplyItems.push({
 							supplyItem: data.supplyItem,
 							supplyAmount: data.amount,
-							supplyState: false
-							
+							supplyState: false,
+							respPerson: ''
 						});
 					}
 				}
@@ -54,20 +55,28 @@ export class ContactPage {
 		prompt.present();
 	}
 
-	updateItem(supplyId, supplyItem, supplyAmount) {
+	updateItem(supplyId, supplyItem, supplyAmount, respPerson) {
 		let prompt = this.alertCtrl.create({
 			title: supplyItem,
-			message: 'Anpassen',
+			message: 'Ich brings mit!',
 			inputs: [
 				{
 					name: 'name',
 					placeholder: supplyItem,
-					value: supplyItem
+					value: supplyItem,
+					 type: 'text'
 				},
 				{
 					name: 'amount',
 					placeholder: supplyAmount,
-					value: supplyAmount
+					value: supplyAmount,
+					type: 'number'
+				},
+				{
+					name: 'respPerson',
+					placeholder: "Name",
+					value: respPerson,
+					 type: 'text'
 				}
 			],
 			buttons: [
@@ -82,7 +91,9 @@ export class ContactPage {
 					handler: data => {
 						this.supplyItems.update(supplyId, {
 							supplyItem: data.name,
-							supplyAmount: data.amount
+							supplyAmount: data.amount,
+							respPerson: data.respPerson,
+							supplyState: true
 						});
 						
 					}
