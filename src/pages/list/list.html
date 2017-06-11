@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ item.name }} {{ item.date }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-fab right bottom>
+    <button ion-fab class="fab fab-md fab-md-accent" style="bottom: 60px" (click)="addItem(item.$key)"><ion-icon name="md-add"></ion-icon></button>
+  </ion-fab>
+
+<ion-content padding>
+  <b>{{item.description}}</b><br>
+  {{item.date}} {{item.startTime}} - {{item.endTime}}<br>
+<ion-list>
+		<ion-item-sliding *ngFor="let supplyItem of supplyItems | async">
+			<ion-item> 
+				<ion-label>{{supplyItem.supplyAmount}} {{supplyItem.supplyItem}} <b>{{supplyItem.respPerson}}</b></ion-label>
+				<ion-checkbox [(ngModel)]="supplyItem.supplyState" (ionChange)="updateState(supplyItem.$key, supplyItem.supplyState)"></ion-checkbox>		
+		
+			</ion-item>
+			<ion-item-options side="right">
+				<button ion-button color="primary" (click)="updateItem(supplyItem.$key, supplyItem.supplyItem, supplyItem.supplyAmount, supplyItem.respPerson)">
+					<ion-icon name="md-create"></ion-icon>
+					Eintragen
+				</button>
+				<button ion-button color="secondary" (click)="removeItem(supplyItem.$key)">
+					<ion-icon name="md-trash"></ion-icon>
+					Löschen
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>
+	</ion-list>
+  </ion-content>

@@ -3,7 +3,7 @@ import { NavController, AlertController, NavParams } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { ContactPage } from '../contact/contact';
+import { ListPage } from '../list/list';
 import { DatePicker } from '@ionic-native/date-picker';
 //import { environment } from '../environments/environment';
 
@@ -21,7 +21,7 @@ export class HomePage {
 
   viewItem(item) {
     //console.log(item);
-    this.navCtrl.push(ContactPage, {
+    this.navCtrl.push(ListPage, {
       item: item
     });
   }
